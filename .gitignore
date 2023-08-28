@@ -1,0 +1,6 @@
+*.bak
+# *.ini
+*.exe
+*.csv
+*.zip
+.vscode

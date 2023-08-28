@@ -1,0 +1,6 @@
+INSERT INTO
+  SpeechRecognitionActivity (version, name, xml)
+VALUES
+  ('2022.4.3_Classic', 'Do While', 
+   '<ClipboardData Version="1.0" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"><ClipboardData.Data><scg:List x:TypeArguments="x:Object" Capacity="1"><ui:InterruptibleDoWhile x:Name="__ReferenceID0" DisplayName="Do While" VirtualizedContainerService.HintSize="438,248"><ui:InterruptibleDoWhile.Body><p:Sequence DisplayName="Body" VirtualizedContainerService.HintSize="200,83"><WorkflowViewStateService.ViewState><scg:Dictionary x:TypeArguments="x:String, x:Object"><x:Boolean x:Key="IsExpanded">True</x:Boolean></scg:Dictionary></WorkflowViewStateService.ViewState></p:Sequence></ui:InterruptibleDoWhile.Body></ui:InterruptibleDoWhile></scg:List></ClipboardData.Data><ClipboardData.Metadata><scg:List x:TypeArguments="x:Object" Capacity="4"><scg:List x:TypeArguments="x:Object" Capacity="4"><x:Reference>__ReferenceID0</x:Reference></scg:List></scg:List></ClipboardData.Metadata></ClipboardData>'
+  );

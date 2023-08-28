@@ -1,0 +1,6 @@
+INSERT INTO
+  SpeechRecognitionActivity (version, name, xml)
+VALUES
+  ('2022.4.3_Classic', 'Assign', 
+   '<ClipboardData Version="1.0" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"><ClipboardData.Data><scg:List Capacity="1" x:TypeArguments="x:Object"><p:Assign VirtualizedContainerService.HintSize="484,60" x:Name="__ReferenceID0"><p:Assign.To><p:OutArgument x:TypeArguments="x:Int32"></p:OutArgument></p:Assign.To><p:Assign.Value><p:InArgument x:TypeArguments="x:Int32"></p:InArgument></p:Assign.Value></p:Assign></scg:List></ClipboardData.Data><ClipboardData.Metadata><scg:List Capacity="4" x:TypeArguments="x:Object"><scg:List Capacity="4" x:TypeArguments="x:Object"><x:Reference>__ReferenceID0</x:Reference></scg:List></scg:List></ClipboardData.Metadata></ClipboardData>'
+  );

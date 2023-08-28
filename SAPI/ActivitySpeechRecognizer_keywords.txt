@@ -1,0 +1,37 @@
+﻿Add Data Row
+Assign
+Attach Browser
+Attach Window
+Break
+Build Data Table
+Click
+Continue
+Delay
+Deserialize Json
+Deserialize Json Array
+Do While
+Element Exists
+Find Children
+Find Element
+Flowchart
+For Each
+Get Text
+If
+Invoke Method
+Invoke Workflow File
+Log Message
+Message Box
+Multiple Assign
+Navigate To
+Open Browser
+Read Range
+Rethrow
+Retry Scope
+Select Item
+Send Hotkey
+Sequence
+Start Process
+Type Into
+Throw
+Try Catch
+While
