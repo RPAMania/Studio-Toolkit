@@ -2,8 +2,8 @@
  * @description UiPath Studio utility tools to weed recurrence out of RPA development
  * @file UiPath Studio Toolkit.ahk
  * @author TJay🐦
- * @date 2023/08/25
- * @version 1.0.0
+ * @date 2024/02/10
+ * @version 1.0.1
  ***********************************************************************/
 /*
 */
@@ -69,9 +69,9 @@ class UiPath
     {
       static VendorName := "RPA Mania"
       static TitleHeading := GetScriptName() " engine"
-      static Version := { Number: "1.0.0", Stage: "" }
+      static Version := { Number: "1.0.1", Stage: "" }
       static GithubBaseUrl := "https://github.com/RPAMania/Studio-Toolkit"
-      ;@Ahk2Exe-SetVersion 1.0.0
+      ;@Ahk2Exe-SetVersion 1.0.1
       static GlobalFontSize := 11
       static StartStopButtonText := { Start: "Start", Stop: "Stop" }
       static ModuleState :=
@@ -439,9 +439,13 @@ class UiPath
 
       __CheckUpdate()
       {
+        static confirmationExtraMessage := "`nUpdating will overwrite the settings file '{1}'"
+            . " with default content.`n`n" 
+        
         try
         {
-          script.Update(this.base.GithubBaseUrl "/releases/latest")
+          script.Update(format(confirmationExtraMessage, this.iniFileFullPath)
+              , this.base.GithubBaseUrl "/releases/latest")
         }
         catch ex
         {
@@ -588,7 +592,7 @@ ParseVersionNumberString(versionNumber, versionStage)
 ForceSingleInstance()
 {
   detecthiddenwindows, on
-  oldMatchMode := a_titlematchmode 
+  oldMatchMode := a_titlematchmode
   settitlematchmode, regex
 
   if (winexist("\Q" UiPath.Studio.Toolkit.TitleHeading "\E.*\Q" 

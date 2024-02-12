@@ -3,7 +3,7 @@
 
 class ActivitySpeechRecognizer extends BaseSpeechRecognizer
 {
-  static Version := { Number: "0.0.1", Stage: "alpha" }
+  static Version := { Number: "0.0.2", Stage: "alpha" }
 
   __Get(key)
   {
@@ -137,7 +137,7 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
     
     this.activityXamlStorage.Open(this.gui.config.templateStoragePath)
 
-    this.Recognize(this.gui.config.keywords).Listen(false)
+    this.Recognize(this.gui.config.keywords, False) ; .Listen(false)
     this.Activate()
   }
 
@@ -277,6 +277,15 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
     ; Activate COM object listening 
     this.Listen()
 
+    if (!this.Prompting)
+    {
+      ; Sometimes COM object activation may take a while. If a user has released the
+      ; listening hotkey in the meantime, there's no point going further. Otherwise
+      ; this.Prompt() may get called after key release tasks have executed, and,
+      ; consequently, a prompting loop will get stuck until the next listening hotkey press.
+      return
+    }
+
     ; Wait for a successful keyword detection or a cancelled prompt
     activityName := this.Prompt()
 
@@ -286,7 +295,7 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
 
       Log("A keyword captured: """ activityName """")
 
-      this.__AssignActivityToClipboard(activityName)
+      this.__PlaceActivityToClipboard(activityName)
     }
   }
 
@@ -297,7 +306,7 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
       Log("Ending listening to incoming audio")
     }
 
-    ; Reset the prompt flag to have an active listener break out of a listening loop
+    ; Clear the prompt flag to have an active listener break out of a listening loop
     this.Prompting := false
 
     ; Turn recognizer COM object listening state off
@@ -309,7 +318,7 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
   ; SUCCESSFUL RECOGNITION HANDLING METHODS
   ; =====================================
 
-  __AssignActivityToClipboard(activityName)
+  __PlaceActivityToClipboard(activityName)
   {
     try
     {
@@ -547,12 +556,14 @@ class ActivitySpeechRecognizer extends BaseSpeechRecognizer
 
       ; Sets the following format:
       ; - WorkflowXamlFormat_TargetFramework
+      /*
       clipboardBytes := this.DotNetRemotingBinarySerializationStream
           .GetTargetFrameworkStreamData()
 
       this.ClipboardManager.TransferDataToClipboard(clipboardBytes
           , this.ClipboardManager
               .RegisteredClipboardFormatNames.WorkflowXamlFormat_TargetFramework.Value)
+      */
     }
   }
 

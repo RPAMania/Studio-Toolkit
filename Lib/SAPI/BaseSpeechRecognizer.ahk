@@ -142,11 +142,14 @@ class BaseSpeechRecognizer
         ComObjConnect(this.cContext, "SpeechRecognizer_") ;connect the recognition context events to functions
     }
 
-    Recognize(Values = True)
+    Recognize(Values = True, Listen = True)
     {
         If Values ;enable speech recognition
         {
-            this.Listen(True)
+            if (Listen) ; Should also start listening
+            {
+                this.Listen(True)
+            }
             If IsObject(Values) ;list of phrases to use
                 this.Phrases(Values)
             Else ;recognize any phrase
@@ -159,6 +162,8 @@ class BaseSpeechRecognizer
 
     Listen(State = True)
     {
+        static SRSInactive := 0, SRSActive := 1, SRSInactiveWithPurge := 3
+
         audioInputsRefreshedOnError := false
 
         retryListen:
@@ -166,10 +171,10 @@ class BaseSpeechRecognizer
         {
             If State
             {
-                this.cListener.State := 1 ;SRSActive
+                this.cListener.State := SRSActive
             }
             Else
-                this.cListener.State := 0 ;SRSInactive
+                this.cListener.State := SRSInactiveWithPurge
         }
         catch e
         {

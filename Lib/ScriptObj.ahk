@@ -71,7 +71,7 @@ class script
               "latest") from which the version number will be extracted.
             and
             * as the URL to a GitHub releases page from which to extract the
-              download link to the 
+              download link
 
     rfile - Remote File
             Script file to be downloaded and installed if a new version is found.
@@ -87,7 +87,7 @@ class script
 
     For more information about SemVer and its specs click here: <https://semver.org/>
   */
-  Update(vfile, rfile := "")
+  Update(downloadConfirmationExtraMessage, vfile, rfile := "")
   {
     ; Error Codes
     static ERR_INVALIDVFILE := 1
@@ -193,8 +193,9 @@ class script
 			msgbox % 0x4 + 0x20 + 0x1000
           , % "New Update Available"
           , % "There is a new update available for this application.`n"
+            . downloadConfirmationExtraMessage
             . "Do you wish to upgrade to v" remVersion "?"
-          , 10	; timeout
+          , 20	; timeout
       
 
       ifmsgbox timeout

@@ -15,6 +15,7 @@ Find Children
 Find Element
 Flowchart
 For Each
+Get Credential
 Get Text
 If
 Invoke Method

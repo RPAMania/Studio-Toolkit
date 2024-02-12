@@ -292,9 +292,9 @@ A path to a text file that specifies one keyword per line. While the module is r
 |Break|Find Element|Multiple Assign|Start Process|
 |Build Data Table|Flowchart|Navigate To|Throw|
 |Click|For Each|Open Browser|Try Catch|
-|Continue|Get Text|Read Range|Type Into|
-|Delay|If|Rethrow|While|
-|Deserialize Json|||
+|Continue|Get Credential|Read Range|Type Into|
+|Delay|Get Text|Rethrow|While|
+|Deserialize Json|If||
 
 </details>
 

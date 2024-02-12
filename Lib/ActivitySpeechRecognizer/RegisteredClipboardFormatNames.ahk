@@ -2,8 +2,10 @@
 {
   static SystemString := { Name: "System.String", Value: 0 }
   static WorkflowXamlFormat := { Name: "WorkflowXamlFormat", Value: 0 }
+  /*
   static WorkflowXamlFormat_TargetFramework := { Name: "WorkflowXamlFormat_TargetFramework"
       , Value: 0 }
+  */
 
   ; MSDN: "RegisterClipboardFormatA -- Registered clipboard formats 
   ; are identified by values in the range 0xC000 through 0xFFFF"
@@ -33,15 +35,15 @@
   Update()
   {
     if  (!this.SystemString.Value
-      || !this.WorkflowXamlFormat.Value
-      || !this.WorkflowXamlFormat_TargetFramework.Value)
+      || !this.WorkflowXamlFormat.Value)
+      ; || !this.WorkflowXamlFormat_TargetFramework.Value)
     {
       LogMethod(a_thisfunc)
 
       this.__TryFindFormats()
 
       missingFormats := this.__GetMissingFormats()
-      if (missingFormats.length() > 0)
+      if (missingFormats.Length() > 0)
       {
         missingFormatString := ""
 
@@ -92,14 +94,23 @@
         {
           this.WorkflowXamlFormat.Value := iCurrentRegisteredClipboardFormat ; 0xc002
         }
+
+        ; Note on 2024-02-10: A user using UiPath Studio Community version 2023.12.0
+        ; experienced a continuous "Not all UiPath-related clipboard formats were found" 
+        ; dialog even when they copied an activity in the clipboard in Studio. Turns out 
+        ; Studio only relies on System.String and WorkflowXamlFormat. Apparently never 
+        ; has WorkflowXamlFormat_TargetFramework been needed to copy/paste activity data.
+
+        /*
         else if (formatName == this.WorkflowXamlFormat_TargetFramework.Name)
         {
           this.WorkflowXamlFormat_TargetFramework.Value := iCurrentRegisteredClipboardFormat ; 0xc003
         }
+        */
 
         if (this.SystemString.Value 
-            && this.WorkflowXamlFormat.Value 
-            && this.WorkflowXamlFormat_TargetFramework.Value)
+            && this.WorkflowXamlFormat.Value)
+            ; && this.WorkflowXamlFormat_TargetFramework.Value)
         {
           break
         }
@@ -121,10 +132,12 @@
     {
       missingFormats.Push(this.WorkflowXamlFormat.Name)
     }
+    /*
     if (!this.WorkflowXamlFormat_TargetFramework.Value)
     {
       missingFormats.Push(this.WorkflowXamlFormat_TargetFramework.Name)
     }
+    */
 
     return missingFormats
   }

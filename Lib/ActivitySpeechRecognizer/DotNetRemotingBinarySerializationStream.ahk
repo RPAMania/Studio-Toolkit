@@ -89,6 +89,7 @@
     [MS-NRBF]: .NET Remoting: Binary Format Data Structure
     @ https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-nrbf/75b9fe09-be15-475f-85b8-ae7b7558cfe5
   */
+  
   static TargetFrameworkBytes := ""
       . "96A79EFD" "133B" "7043" "A679" "56106BB288FB"
 
@@ -319,6 +320,7 @@
       */
       . "{1}" ; Terminator byte
 
+  
   /*
     [MS-NRBF]: .NET Remoting: Binary Format Data Structure
     @ https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-nrbf/75b9fe09-be15-475f-85b8-ae7b7558cfe5
@@ -414,6 +416,7 @@
     return lengthPrefixedStringLength
   }
 
+  /*
   GetTargetFrameworkStreamData()
   {
     LogMethod(a_thisfunc)
@@ -422,6 +425,7 @@
       . this.TargetFrameworkBytes
       , this.TerminatorByte)
   }
+  */
 
   GetXamlStreamData(xamlText)
   {
